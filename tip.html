@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+*{margin:0;padding:0;}
+.tip-base{
+	padding:10px 20px;
+	background:rgba(253,241,0,.2);
+	color:#333; 
+	display:inline-block;
+	margin:200px;
+	box-shadow:1px 1px 2px 2px rgba(0,0,0,.1);
+}
+</style>
+<link rel="stylesheet" href="tips.css" />
+</head>
+<body>
+<a href="#" data-title="这是测试文字里的内容"><div class="tip-base">测试文字</div></a>
+<script src="tips.js"></script>
+<script>
+var elem=document.getElementsByTagName("a");
+UiTips.init(elem,{
+	position:"bottom"
+});
+</script>
+</body>
+</html>
