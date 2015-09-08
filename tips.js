@@ -23,24 +23,31 @@ var UiTips=function(){
 			elem.attachEvent("on"+type,G_FUNC);
 		}
 	}
+	function contains(e1,e2){
+		if(e1.contains){
+			return e1!=e2&&e1.contains(e2);
+		}else if(e1.compareDocumentPosition){
+			return e1.compareDocumentPosition(e2)==16;
+		}
+	}
 	function createTips(opts){
 		var opts=opts||{},
-			position=opts.position||"top";
+			position=opts.position||"bottom";
 		tips=document.createElement("div");
-		if(position=="top"){
+		if(position=="bottom"){
 			tips.className="ui-tips";
-		}else if(position=="bottom"){
-			tips.className="ui-tips ui-tips-bottom";
+		}else if(position=="top"){
+			tips.className="ui-tips ui-tips-top";
 		}
 		tips.innerHTML=this.getAttribute("data-title");
 		if(tips.innerHTML){
 			this.style.position="relative";
 			this.appendChild(tips);
-			tips.style.marginLeft=-parseInt(tips.clientWidth)/2+"px"
+			tips.style.marginLeft=-parseInt(tips.clientWidth)/2+"px";
 		}
 	}
 	function unsetTips(){
-		if(tips){
+		if(contains(this,tips)){
 			this.removeChild(tips);
 		}
 	}
